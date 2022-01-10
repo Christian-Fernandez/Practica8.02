@@ -1,0 +1,111 @@
+form {
+    position: relative;
+    width: 350px;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: white;
+    text-align: center;
+
+}
+
+
+
+input[type="password"], input[type="text"], input[type="email"],input[type="number"],select {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+}
+
+textarea,select{
+
+    border: black 2px solid;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+input[type="button"],button {
+    outline: none;
+    background: #4285F4;
+    width: 50%;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 2px;
+    text-decoration: none;
+
+
+
+}
+
+
+
+form div {
+    display: flex;
+}
+
+input[type="submit"]:hover {
+    background: #5691f1;
+
+}
+
+form a:hover {
+    background: #ef4444;
+}
+
+label {
+    display: block;
+    padding-bottom: 0.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.celda{
+    width: 450px;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    margin: 10px;
+
+}
+
+body{
+    display: flex;
+}
+
+#datos{
+   margin: 20px auto;
+    height:800px;
+    width: 600px;
+    overflow: auto;
+    border-radius: 10px;
+}
+
+#borrar{
+    outline: none;
+    background: #4285F4;
+    width: 50%;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 2px;
+    text-decoration: none;
+}
+
+
