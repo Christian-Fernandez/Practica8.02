@@ -22,7 +22,11 @@ window.onload = ()=> {
     document.getElementById("buscador").addEventListener(
         "keyup",
         (e) => {
-            script.filtrarProductos(filtrar.value,buscador.value);
+            if(filtrar.value=="nombre"){
+                script.filtrarProductos(filtrar.value,buscador.value);
+            }else{
+                script.filtrarProductos(filtrar.value,parseInt(buscador.value));
+            }
         },
         false
     );
@@ -30,7 +34,12 @@ window.onload = ()=> {
     filtrar.addEventListener(
         "change",
         (e) => {
-            script.filtrarProductos(filtrar.value,buscador.value);
+            if(filtrar.value=="nombre"){
+                script.filtrarProductos(filtrar.value,buscador.value);
+            }else{
+                script.filtrarProductos(filtrar.value,parseInt(buscador.value));
+            }
+
         },
         false
     );
