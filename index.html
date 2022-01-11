@@ -9,23 +9,29 @@
     <title>Almacenamiento</title>
   </head>
   <body>
+  <form action="">
 
+      <input type="text" id="buscador">
       <select id="selección">
-        <option value="0">Nombre</option>
-        <option value="1">Apellido</option>
-        <option value="2">Teléfono</option>
+          <option value="nombre">Nombre</option>
+          <option value="precio">Precio</option>
+          <option value="peso">Peso</option>
       </select>
 
       <input type="button" id="ordenar" value="Ordenar" />
+
       <select id="selección2">
-        <option value="0">Nombre</option>
-        <option value="1">Apellido</option>
+          <option value="nombre">Nombre</option>
+          <option value="precio">Precio</option>
+          <option value="peso">Peso</option>
       </select>
 
-      <input type="button" id="actualizar" value="Actualizar" />
+      <input type="button" id="mostrar" value="Mostrar Productos" />
+
+  </form>
 
     <div id="datos"></div>
 
-    <script type="module" src="./js/index.js"></script>
+  <script type="module" src="./js/index.js"></script>
   </body>
 </html>
