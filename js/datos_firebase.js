@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
 
+//Configuración de firebase.
 const firebaseConfig = {
 
     apiKey: "AIzaSyDVMz6AuLixxCHTDKYDBGxzUBQR8rUWN-M",
@@ -17,8 +18,7 @@ const firebaseConfig = {
 
 };
 
-// Initialize Firebase
-
+// Inicializamos Firebase.
 const app = initializeApp(firebaseConfig);
 
 export { app };

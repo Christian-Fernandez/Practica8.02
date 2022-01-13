@@ -19,7 +19,7 @@ import {
     const db = getFirestore(app);
     const coleccion = collection(db,"Productos");
 
-
+    //Función que obtiene los productos solicitados de la base de datos.
     export const obtenerProductos = async () => {
         let productos = await getDocs(coleccion);
         document.getElementById("datos").innerHTML ="";
@@ -30,7 +30,7 @@ import {
         });
     };
 
-
+//Función que hace ua query a la base de datos para que devuelva los productos ordenados.
 export const ordenarProductos = async (campo) => {
     const consulta = query(
         coleccion,
@@ -45,6 +45,7 @@ export const ordenarProductos = async (campo) => {
     });
 };
 
+//Función que se encarga de filtrar los productos mediante una query.
 export const filtrarProductos = async (campo,valor) => {
     const consulta = query(
         coleccion,
