@@ -9,28 +9,81 @@
     <title>Almacenamiento</title>
   </head>
   <body>
-  <form action="#">
 
-      <input type="text" id="buscador">
-      <select id="selección">
-          <option value="nombre">Nombre</option>
-          <option value="precio">Precio</option>
-          <option value="peso">Peso</option>
-      </select>
+  <nav> <input type="button" id="productos" value="Productos"/> <input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/></nav>
+  <div id="mostrar_productos">
+      <form action="#">
 
-      <input type="button" id="ordenar" value="Ordenar" />
+          <input type="text" id="buscador">
+          <select id="selección">
+              <option value="nombre">Nombre</option>
+              <option value="precio">Precio</option>
+              <option value="peso">Peso</option>
+          </select>
 
-      <select id="selección2">
-          <option value="nombre">Nombre</option>
-          <option value="precio">Precio</option>
-          <option value="peso">Peso</option>
-      </select>
+          <input type="button" id="ordenar" value="Ordenar" />
 
-      <input type="button" id="mostrar" value="Mostrar"/>
+          <select id="selección2">
+              <option value="nombre">Nombre</option>
+              <option value="precio">Precio</option>
+              <option value="peso">Peso</option>
+          </select>
 
-  </form>
+          <input type="button" id="mostrar" value="Mostrar"/>
 
-    <div id="datos"></div>
+      </form>
+
+        <div id="datos"></div>
+      </div>
+  </div>
+
+  <div id="mostrar_carrito" class="ocultar">
+      <form action="#">
+
+          <input type="text" id="buscador_carrito">
+          <select id="selección_carrito">
+              <option value="nombre">Nombre</option>
+              <option value="precio">Precio</option>
+              <option value="peso">Peso</option>
+          </select>
+
+          <input type="button" id="ordenar_carrito" value="Ordenar" />
+
+          <select id="selección2_carrito">
+              <option value="nombre">Nombre</option>
+              <option value="precio">Precio</option>
+              <option value="peso">Peso</option>
+          </select>
+
+          <input type="button" id="mostrarCarrito" value="Mostrar"/>
+
+      </form>
+
+      <div id="datos_carrito"></div>
+  </div>
+  <div id="crear_carrito" class="ocultar">
+      <form action="#">
+
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre">
+          <label for="propietario">Propietario:</label>
+          <input type="text" id="propietario" name="propietario">
+          <input type="button" id="crear">
+      </form>
+
+  </div>
+
+  <div id="añadir_producto" class="ocultar">
+      <form action="#">
+
+          <select name="carrito" id="select_carrito"></select>
+          <select name="carrito" id="select_producto"></select>
+
+          <input type="button" id="btnAñadir" value="Añadir Producto"/>
+      </form>
+
+  </div>
+  </div>
 
   <script type="module" src="./js/index.js"></script>
   </body>
