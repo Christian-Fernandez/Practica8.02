@@ -118,6 +118,19 @@ export const obtenerAñadirCarritos = async () => {
 };
 
 
+export const obtenerCarrito = async (id) => {
+    let carrito = await doc(coleccion_carrito,id);
+    const datos = await getDoc(carrito);
+    document.getElementById("datos_carrito2").innerHTML ="";
+
+        let tables = document.createElement("table");
+        tables.innerHTML="";
+        tables.innerHTML += plantillas.printear_carrito(datos,tables);
+        document.getElementById("datos_carrito2").appendChild(tables);
+
+};
+
+
 export const crearCarrito = (nombre,propietario,array,fecha) => {
     let nuevoFeo = {
         nombre: nombre,

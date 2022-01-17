@@ -131,6 +131,15 @@ window.onload = ()=> {
         "click",
         (e) => {
            script.actualizarProductosCarrito(document.getElementById("select_carrito").value,document.getElementById("select_producto").value)
+            script.obtenerCarrito(document.getElementById("select_carrito").value);
+        },
+        false
+    );
+
+    document.getElementById("select_carrito").addEventListener(
+        "change",
+        (e) => {
+            script.obtenerCarrito(document.getElementById("select_carrito").value);
         },
         false
     );
