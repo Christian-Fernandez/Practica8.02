@@ -10,7 +10,7 @@
   </head>
   <body>
 
-  <nav> <input type="button" id="productos" value="Productos"/> <input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/></nav>
+  <nav> <input type="button" id="productos" value="Productos"/> <input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/></nav>
   <div id="mostrar_productos">
       <form action="#">
 
@@ -40,19 +40,11 @@
   <div id="mostrar_carrito" class="ocultar">
       <form action="#">
 
-          <input type="text" id="buscador_carrito">
-          <select id="selección_carrito">
-              <option value="nombre">Nombre</option>
-              <option value="precio">Precio</option>
-              <option value="peso">Peso</option>
-          </select>
-
           <input type="button" id="ordenar_carrito" value="Ordenar" />
 
-          <select id="selección2_carrito">
-              <option value="nombre">Nombre</option>
-              <option value="precio">Precio</option>
-              <option value="peso">Peso</option>
+          <select id="selección_carrito">
+              <option value="propietario">Propietario</option>
+              <option value="fecha">Fecha</option>
           </select>
 
           <input type="button" id="mostrarCarrito" value="Mostrar"/>
@@ -68,18 +60,38 @@
           <input type="text" id="nombre" name="nombre">
           <label for="propietario">Propietario:</label>
           <input type="text" id="propietario" name="propietario">
-          <input type="button" id="crear">
+          <input type="button" id="crear" value="Crear Carrito">
       </form>
 
   </div>
 
   <div id="añadir_producto" class="ocultar">
-      <form action="#">
+      <form id="form_producto" action="#">
 
           <select name="carrito" id="select_carrito"></select>
           <select name="carrito" id="select_producto"></select>
 
           <input type="button" id="btnAñadir" value="Añadir Producto"/>
+      </form>
+
+  </div>
+
+  <div id="editar_producto" class="ocultar">
+      <form id="form_modificar_producto" action="#">
+
+          <select name="carrito" id="select_producto2"></select>
+          <label for="imagen_modificar">Imagen:</label>
+          <input type="text" id="imagen_modificar">
+          <label for="nombre_modificar">Nombre:</label>
+          <input type="text" id="nombre_modificar">
+          <label for="descripcion_modificar">Descripcion:</label>
+          <input type="text" id="descripcion_modificar">
+          <label for="peso_modificar">Peso:</label>
+          <input type="number" id="peso_modificar">
+          <label for="precio_modificar">Precio:</label>
+          <input type="number" id="precio_modificar">
+          <br>
+          <input type="button" id="btnModificar" value="Modificar Producto"/>
       </form>
 
   </div>

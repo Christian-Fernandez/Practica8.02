@@ -2,6 +2,7 @@
 
 import * as script from "./script_firebase.js";
 import * as plantillas from "./plantillasFirebase.js";
+import {editarObtenerProducto} from "./script_firebase.js";
 
 window.onload = ()=> {
 
@@ -67,10 +68,7 @@ window.onload = ()=> {
     productos.addEventListener(
         "click",
         (e) => {
-            document.getElementById("mostrar_carrito").classList.add("ocultar");
-            document.getElementById("crear_carrito").classList.add("ocultar");
-            document.getElementById("añadir_producto").classList.add("ocultar");
-            document.getElementById("mostrar_productos").classList.remove("ocultar");
+            plantillas.navProducto();
         },
         false
     );
@@ -79,10 +77,7 @@ window.onload = ()=> {
     carrito.addEventListener(
         "click",
         (e) => {
-            document.getElementById("mostrar_carrito").classList.remove("ocultar");
-            document.getElementById("mostrar_productos").classList.add("ocultar");
-            document.getElementById("crear_carrito").classList.add("ocultar");
-            document.getElementById("añadir_producto").classList.add("ocultar");
+            plantillas.navVerCarrito();
         },
         false
     );
@@ -92,10 +87,7 @@ window.onload = ()=> {
     crear_carrito.addEventListener(
         "click",
         (e) => {
-            document.getElementById("mostrar_carrito").classList.add("ocultar");
-            document.getElementById("mostrar_productos").classList.add("ocultar");
-            document.getElementById("crear_carrito").classList.remove("ocultar");
-            document.getElementById("añadir_producto").classList.add("ocultar");
+            plantillas.navCrearCarrito();
         },
         false
     );
@@ -103,10 +95,15 @@ window.onload = ()=> {
     añadir_producto.addEventListener(
         "click",
         (e) => {
-            document.getElementById("mostrar_carrito").classList.add("ocultar");
-            document.getElementById("mostrar_productos").classList.add("ocultar");
-            document.getElementById("crear_carrito").classList.add("ocultar");
-            document.getElementById("añadir_producto").classList.remove("ocultar");
+            plantillas.navAñadirProducto();
+        },
+        false
+    );
+
+    document.getElementById("modificar_productos").addEventListener(
+        "click",
+        (e) => {
+            plantillas.navEditarProducto();
         },
         false
     );
@@ -141,8 +138,34 @@ window.onload = ()=> {
     document.getElementById("mostrarCarrito").addEventListener(
         "click",
         (e) => {
-          script.obtenerCarritos();
+            script.obtenerCarritos();
         },
         false
     );
+
+    document.getElementById("ordenar_carrito").addEventListener(
+        "click",
+        (e) => {
+            script.ordenarCarritos(document.getElementById("selección_carrito").value);
+        },
+        false
+    );
+
+    document.getElementById("select_producto2").addEventListener(
+        "change",
+        (e) => {
+            script.editarObtenerProducto(e.target.value);
+        },
+        false
+    );
+
+    document.getElementById("btnModificar").addEventListener(
+        "click",
+        (e) => {
+            script.editarProducto(document.getElementById("select_producto2").value,document.getElementById("imagen_modificar").value,document.getElementById("nombre_modificar").value,document.getElementById("descripcion_modificar").value,document.getElementById("peso_modificar").value,document.getElementById("precio_modificar").value);
+        },
+        false
+    );
+
+
 }

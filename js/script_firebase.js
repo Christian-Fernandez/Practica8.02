@@ -16,6 +16,7 @@ import {
     orderBy,
     limit,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+import {printear_tabla} from "./plantillasFirebase.js";
 
 //*** Enlace a las bibliotecas Firebase -> https://firebase.google.com/docs/web/learn-more?authuser=0#libraries-cdn
 
@@ -40,23 +41,29 @@ import {
         document.getElementById("select_producto").innerHTML ="";
 
         productos.docs.map((documento) => {
+
             document.getElementById("select_producto").innerHTML += plantillas.printear_añadirProductos(documento);
+            document.getElementById("select_producto2").innerHTML += plantillas.printear_añadirProductos(documento);
 
         });
+
     };
 
 
 
 //Función que obtiene un producto solicitados de la base de datos.
-export const obtenerProducto = async (id) => {
+export const obtenerProducto = async (id,texto,i,tabla) => {
     let productos = await doc(coleccion,id);
+    const datos = await getDoc(productos);
 
-    const pruebaDoc = await getDoc(productos);
-    return pruebaDoc;
+    if(i==0){
+        tabla.innerHTML = texto;
+    }
+    tabla.innerHTML += plantillas.printear_tabla(datos);
 
 };
 
-//Función que hace ua query a la base de datos para que devuelva los productos ordenados.
+//Función que hace una query a la base de datos para que devuelva los productos ordenados.
 export const ordenarProductos = async (campo) => {
     const consulta = query(
         coleccion,
@@ -90,10 +97,13 @@ export const filtrarProductos = async (campo,valor) => {
 //Función que obtiene los productos solicitados de la base de datos.
 export const obtenerCarritos = async () => {
     let productos = await getDocs(coleccion_carrito);
-    document.getElementById("datos").innerHTML ="";
+    document.getElementById("datos_carrito").innerHTML ="";
 
     productos.docs.map((documento) => {
-        document.getElementById("datos_carrito").innerHTML += plantillas.printear_carrito(documento);
+        let tables = document.createElement("table");
+        tables.innerHTML="";
+        tables.innerHTML += plantillas.printear_carrito(documento,tables);
+        document.getElementById("datos_carrito").appendChild(tables);
 
     });
 };
@@ -129,6 +139,52 @@ export const actualizarProductosCarrito = async (id,dato) => {
         productos: arrayUnion(dato),
     });
 };
+
+//Función que hace una query a la base de datos para que devuelva los carritos ordenados.
+export const ordenarCarritos = async (campo) => {
+    const consulta = query(
+        coleccion_carrito,
+        orderBy(campo, "desc"),
+    );
+
+    document.getElementById("datos").innerHTML ="";
+    const carritosOrdenados = await getDocs(consulta);
+    document.getElementById("datos_carrito").innerHTML ="";
+
+    carritosOrdenados.docs.map((documento) => {
+        let tables = document.createElement("table");
+        tables.innerHTML="";
+        tables.innerHTML += plantillas.printear_carrito(documento,tables);
+        document.getElementById("datos_carrito").appendChild(tables);
+
+    });
+};
+
+
+export const editarObtenerProducto = async (id) => {
+    let productos = await doc(coleccion,id);
+    const datos = await getDoc(productos);
+
+    document.getElementById("imagen_modificar").value=datos.data().imagen;
+    document.getElementById("nombre_modificar").value=datos.data().nombre;
+    document.getElementById("descripcion_modificar").value=datos.data().descripcion;
+    document.getElementById("peso_modificar").value=datos.data().peso;
+    document.getElementById("precio_modificar").value=datos.data().precio;
+
+};
+
+export const editarProducto = async (id,imagen,nombre,descripcion,peso,precio) => {
+    const pruebaRef = await doc(coleccion, id);
+    await updateDoc(pruebaRef, {
+        imagen: imagen,
+        nombre: nombre,
+        descripcion: descripcion,
+        peso: parseFloat(peso),
+        precio: parseFloat(precio),
+    });
+};
+
+
 
 
 

@@ -8,14 +8,12 @@ export const printear = (documento) => {
     documento.data().peso}</p><p><b>Precio: </b>${documento.data().precio}€</p><img src="${documento.data().imagen}"><p><b>Descripción: </b>${documento.data().descripcion}</p></div>`;
 };
 
-export const printear_carrito = (documento) => {
-  var tabla = `<table><tr><th>${documento.data().nombre}</th><th>${documento.data().propietario}</th><th>${documento.data().fecha}</th></tr> <tr><th>Imagen</th><th>Nombre</th><th>Descripción</th><th>peso</th><th>precio</th></tr>`;
-  for(let i=0;i<documento.data().productos.length;i++){
-    let datos = script.obtenerProducto(documento.data().productos[i]);
-      tabla += `<tr><td><img src="${datos.data().imagen}"></td><td>${datos.data().nombre}</td><td>${datos.data().descripcion}</td><td>${datos.data().peso}</td><td>${datos.data().precio}</td></tr>`;
-  }
-  tabla += `</table>`
-  return tabla;
+export const printear_carrito = (documento,tabla) => {
+
+    var texto = `<tr><th>${documento.data().nombre}</th><th colspan="2">${documento.data().propietario}</th><th colspan="2">${documento.data().fecha}</th></tr> <tr><th>Imagen</th><th>Nombre</th><th>Descripción</th><th>peso</th><th>precio</th></tr>`;
+    for (let i = 0; i < documento.data().productos.length; i++) {
+      script.obtenerProducto(documento.data().productos[i], texto, i, tabla);
+    }
 };
 
 export const printear_añadirProductos = (documento) => {
@@ -26,6 +24,58 @@ export const printear_añadirCarritos = (documento) => {
 
   return `<option value="${documento.id}">${documento.data().nombre}</option>`;
 };
+
+export const printear_tabla = (documento) => {
+
+  return `<tr><td><img src="${documento.data().imagen}"></td><td>${documento.data().nombre}</td><td>${documento.data().descripcion}</td><td>${documento.data().peso}</td><td>${documento.data().precio}</td></tr>`;
+};
+
+export const navProducto = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.remove("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+};
+
+export const navCrearCarrito = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.remove("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+};
+
+export const navVerCarrito = () => {
+
+    document.getElementById("mostrar_carrito").classList.remove("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+};
+
+export const navAñadirProducto = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.remove("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+};
+
+export const navEditarProducto = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("editar_producto").classList.remove("ocultar");
+};
+
+
 
 
 

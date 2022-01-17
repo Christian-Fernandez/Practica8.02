@@ -1,6 +1,52 @@
 form {
-    position: relative;
+
     width: 350px;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: white;
+    text-align: center;
+    overflow: auto;
+
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 45px;
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+}
+
+th {
+    font-size: 13px;
+    font-weight: normal;
+    padding: 15px;
+    background: #b9c9fe;
+    border-top: 4px solid #aabcfe;
+    border-bottom: 1px solid #fff;
+    color: black;
+    border-collapse: collapse
+
+}
+
+td {
+    padding: 18px;
+    background: #e8edff;
+    border-bottom: 1px solid #fff;
+    color: black;
+    border-collapse: collapse
+
+}
+
+#form_producto,#form_modificar_producto{
+
+    width: 850px;
     border: 1px solid #E1E1E1;
     border-radius: 10px;
     padding: 15px;
@@ -28,7 +74,7 @@ input[type="email"],select {
 }
 
 input[type="text"],input[type="number"]{
-    position: relative;
+
     font-size: 16px;
     height: auto;
     width: 200px;
@@ -41,11 +87,11 @@ select{
 
     border: black 2px solid;
     border-radius: 5px;
-    resize: none;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
-input[type="button"],button{
+div input[type="button"],button{
 
     background: #4285F4;
     width: 50%;
@@ -58,13 +104,11 @@ input[type="button"],button{
     margin-top: 20px;
     margin-left: 2px;
 
-
-
 }
 
 
 form div {
-    display: flex;
+
 }
 
 input[type="submit"]:hover {
@@ -95,7 +139,7 @@ label {
 }
 
 body{
-    display: flex;
+
 }
 
 #datos{
@@ -123,6 +167,25 @@ body{
 
 .ocultar{
     display: none;
+}
+
+nav {
+    overflow: hidden;
+
+}
+
+nav input[type="button"],button{
+
+    background: #4285F4;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 2px;
+
 }
 
 
