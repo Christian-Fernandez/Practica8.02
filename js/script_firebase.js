@@ -132,14 +132,14 @@ export const obtenerCarrito = async (id) => {
 
 
 export const crearCarrito = (nombre,propietario,array,fecha) => {
-    let nuevoFeo = {
+    let nuevoCarrito = {
         nombre: nombre,
         productos: array,
         propietario: propietario,
         fecha: fecha,
     };
 
-    return nuevoFeo;
+    return nuevoCarrito;
 };
 
 export const guardarCarrito = async (feo) => {
