@@ -92,6 +92,8 @@ window.onload = ()=> {
         false
     );
 
+
+    //AddEventListener que al hacer clic sobre el identificador añadirProducto ejecutara la función navAñadirProducto.
     añadir_producto.addEventListener(
         "click",
         (e) => {
@@ -100,6 +102,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador modificar_productos ejecutara la función navEditarProducto.
     document.getElementById("modificar_productos").addEventListener(
         "click",
         (e) => {
@@ -108,6 +111,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador crear ejecutara las funciónes script.guardarCarrito(nuevoCarrito) ,script.obtenerAñadirProductos(),script.obtenerAñadirCarritos();.
     document.getElementById("crear").addEventListener(
         "click",
         (e) => {
@@ -127,6 +131,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador btnAñadir ejecutara la función actualizarProductosCarrito y obtenerCarrito .
     document.getElementById("btnAñadir").addEventListener(
         "click",
         (e) => {
@@ -136,6 +141,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer cambio sobre el identificador select_carrito ejecutara la función obtenerCarrito.
     document.getElementById("select_carrito").addEventListener(
         "change",
         (e) => {
@@ -144,6 +150,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador mostrarCarrito ejecutara la función obtenerCarritos.
     document.getElementById("mostrarCarrito").addEventListener(
         "click",
         (e) => {
@@ -152,6 +159,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador ordenar_carrito ejecutara la función ordenarCarritos.
     document.getElementById("ordenar_carrito").addEventListener(
         "click",
         (e) => {
@@ -160,6 +168,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer un cambio sobre el identificador select_producto2 ejecutara la función editarObtenerProducto.
     document.getElementById("select_producto2").addEventListener(
         "change",
         (e) => {
@@ -168,6 +177,7 @@ window.onload = ()=> {
         false
     );
 
+    //AddEventListener que al hacer clic sobre el identificador select_producto2 ejecutara la función editarProducto.
     document.getElementById("btnModificar").addEventListener(
         "click",
         (e) => {
