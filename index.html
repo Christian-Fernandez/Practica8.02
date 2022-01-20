@@ -11,6 +11,27 @@
   <body>
 
   <nav> <input type="button" id="productos" value="Productos"/> <input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/></nav>
+
+  <div id="login">
+      <form>
+      <h2>Login</h2>
+      <input id = "usuario" name = "usuario" type = "text" placeholder="Email Address">
+      <input id = "clave" name = "clave" type = "password" placeholder="Password">
+          <div class="mb-3 text-center" id="divError"><span class="text-danger" id="messageError"></span></div>
+      <button id="boton_login">Iniciar Sesión</button>
+      </form>
+  </div>
+
+  <div id="register">
+      <form>
+          <h2>Registrarse</h2>
+          <input id = "usuario_register" name = "usuario" type = "text" placeholder="Email Address">
+          <input id = "clave_register" name = "clave" type = "password" placeholder="Password">
+          <div class="mb-3 text-center" id="divError_register"><span class="text-danger" id="messageError_register"></span></div>
+          <button id="boton_register">Registrarse</button>
+      </form>
+  </div>
+
   <div id="mostrar_productos">
       <form action="#">
 
