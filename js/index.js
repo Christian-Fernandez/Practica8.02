@@ -3,6 +3,7 @@
 import * as script from "./script_firebase.js";
 import * as plantillas from "./plantillasFirebase.js";
 import  * as auth from "./firebase_auth.js";
+import {comprobarAuthMostrarCarrito} from "./firebase_auth.js";
 
 window.onload = ()=> {
 
@@ -124,8 +125,7 @@ window.onload = ()=> {
 
             var dia= dd + '/' + mm  + '/' + yyyy;
 
-            let nuevoCarrito = script.crearCarrito(document.getElementById("nombre").value,document.getElementById("propietario").value,{},dia);
-            script.guardarCarrito(nuevoCarrito);
+            auth.comprobarAuthCarrito(document.getElementById("nombre").value,{},dia);
             script.obtenerAñadirProductos();
             script.obtenerAñadirCarritos();
         },
@@ -155,7 +155,7 @@ window.onload = ()=> {
     document.getElementById("mostrarCarrito").addEventListener(
         "click",
         (e) => {
-            script.obtenerCarritos();
+            auth.comprobarAuthMostrarCarrito();
         },
         false
     );
@@ -164,7 +164,7 @@ window.onload = ()=> {
     document.getElementById("ordenar_carrito").addEventListener(
         "click",
         (e) => {
-            script.ordenarCarritos(document.getElementById("selección_carrito").value);
+            auth.comprobarAuthMostrarCarritoFiltrado(document.getElementById("selección_carrito").value);
         },
         false
     );
@@ -187,7 +187,7 @@ window.onload = ()=> {
         false
     );
 
-    //AddEventListener que al hacer clic sobre el identificador boton_registe ejecutara la función createAccount.
+    //AddEventListener que al hacer clic sobre el identificador boton_register ejecutara la función createAccount.
     document.getElementById("boton_register").addEventListener(
         "click",
         (e) => {
@@ -212,6 +212,16 @@ window.onload = ()=> {
         },
         false
     );
+
+    //AddEventListener que al hacer clic sobre el identificador boton_login ejecutara la función signAccount.
+    document.getElementById("boton_login").addEventListener(
+        "click",
+        (e) => {
+            auth.signAccount(document.getElementById("usuario").value,document.getElementById("clave").value);
+        },
+        false
+    );
+
 
 
 

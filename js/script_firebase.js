@@ -15,6 +15,7 @@ import {
     where,
     orderBy,
     limit,
+    increment,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
 import {printear_tabla} from "./plantillasFirebase.js";
 
@@ -53,14 +54,25 @@ const coleccion_usuarios = collection(db,"Usuarios");
 
 
 //Función que obtiene un producto solicitados de la base de datos.
-export const obtenerProducto = async (id,texto,i,tabla) => {
+export const obtenerProducto = async (id,texto,i,tabla,lenght,peso,precio) => {
     let productos = await doc(coleccion,id);
     const datos = await getDoc(productos);
 
     if(i==0){
+
         tabla.innerHTML = texto;
     }
+
     tabla.innerHTML += plantillas.printear_tabla(datos);
+
+    if(i==lenght-1){
+        if(peso<7){
+            var transporte=`Pesa un total de ${peso} kilos yo de ti iria andando así haces ejercicio.`;
+        }else{
+            var transporte=`Pesa un total de ${peso} kilos yo de ti iria en coche no vaya ser que te partas la espalda.`;
+        }
+        tabla.innerHTML += `<tr><th colspan="2">Peso Total:</th><th colspan="3">Precio Total:</th></tr><tr><td colspan="2">${transporte}</td><td colspan="3">${precio}</td></tr>`;
+    }
 
 };
 
@@ -96,17 +108,22 @@ export const filtrarProductos = async (campo,valor) => {
 
 
 //Función que obtiene los productos solicitados de la base de datos.
-export const obtenerCarritos = async () => {
-    let productos = await getDocs(coleccion_carrito);
+export const obtenerCarritos = async (propietario) => {
     document.getElementById("datos_carrito").innerHTML ="";
 
-    productos.docs.map((documento) => {
+    const consulta = await query(
+        coleccion_carrito,
+        where("propietario", "==", propietario),
+    );
+
+    const carritos = await getDocs(consulta);
+    carritos.docs.map((documento) => {
         let tables = document.createElement("table");
         tables.innerHTML="";
         tables.innerHTML += plantillas.printear_carrito(documento,tables);
         document.getElementById("datos_carrito").appendChild(tables);
-
     });
+
 };
 
 //Función que obtiene los carritos y los añade al select.
@@ -139,6 +156,8 @@ export const crearCarrito = (nombre,propietario,array,fecha) => {
         productos: array,
         propietario: propietario,
         fecha: fecha,
+        peso: 0,
+        precio:0,
     };
 
     return nuevoCarrito;
@@ -151,18 +170,40 @@ export const guardarCarrito = async (objeto) => {
 
 //Función que añade un producto a un carrito.
 export const actualizarProductosCarrito = async (id,dato) => {
+
     const pruebaRef = await doc(coleccion_carrito, id);
-    await updateDoc(pruebaRef, {
-        productos: arrayUnion(dato),
-    });
+    const carrito = await getDoc(pruebaRef);
+    let productos = await doc(coleccion,dato);
+    const datos = await getDoc(productos);
+    const array = carrito.data().productos;
+    if(!Array.isArray(array)){
+        await updateDoc(pruebaRef, {
+            productos: arrayUnion(dato),
+            peso: increment(datos.data().peso),
+            precio: increment(datos.data().precio),
+        });
+
+    }else {
+        if (!array.includes(dato)) {
+            await updateDoc(pruebaRef, {
+                productos: arrayUnion(dato),
+                peso: increment(datos.data().peso),
+                precio: increment(datos.data().precio),
+
+            });
+        }
+    }
+    obtenerCarrito(document.getElementById("select_carrito").value);
 };
 
 //Función que hace una query a la base de datos para que devuelva los carritos ordenados.
-export const ordenarCarritos = async (campo) => {
-    const consulta = query(
+export const ordenarCarritos = async (propietario,campo) => {
+    const consulta = await query(
         coleccion_carrito,
-        orderBy(campo, "desc"),
+        where("propietario", "==", propietario)
+
     );
+
 
     document.getElementById("datos").innerHTML ="";
     const carritosOrdenados = await getDocs(consulta);
@@ -226,8 +267,8 @@ export const queryRol = async (id) => {
         where("id", "==", id),
     );
 
-    const productosOrdenados = await getDocs(consulta);
-    productosOrdenados.docs.map((documento) => {
+    const rol = await getDocs(consulta);
+    rol.docs.map((documento) => {
 
         if(documento.data().rol == "editor"){
             plantillas.navProducto();
