@@ -63,7 +63,7 @@ img{
 
 
 
-input[type="email"],select {
+input[type="email"],input[type="password"],select {
     position: relative;
     font-size: 16px;
     height: auto;
@@ -114,10 +114,6 @@ form div {
 input[type="submit"]:hover {
     background: #5691f1;
 
-}
-
-form a:hover {
-    background: #ef4444;
 }
 
 label {

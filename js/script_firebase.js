@@ -23,6 +23,7 @@ import {printear_tabla} from "./plantillasFirebase.js";
     const db = getFirestore(app);
     const coleccion = collection(db,"Productos");
     const coleccion_carrito = collection(db,"carrito");
+const coleccion_usuarios = collection(db,"Usuarios");
 
     //Función que obtiene los productos solicitados de la base de datos.
     export const obtenerProductos = async () => {
@@ -198,6 +199,44 @@ export const editarProducto = async (id,imagen,nombre,descripcion,peso,precio) =
         descripcion: descripcion,
         peso: parseFloat(peso),
         precio: parseFloat(precio),
+    });
+};
+
+//Función que crea un nuevo usuario.
+export const crearUsuario = (nombre,id,rol,fecha) => {
+    let nuevoUsuario = {
+        nombre: nombre,
+        fecha: fecha,
+        id: id,
+        rol: rol,
+    };
+
+    return nuevoUsuario;
+};
+
+//Función que guarda en la colección de usuarios , el objeto que se le pasa por parametro.
+export const guardarUsuario = async (objeto) => {
+    const guardado = await addDoc(coleccion_usuarios, objeto);
+};
+
+//Función que hace una query en la colección de usuarios , con el id pasado por parametro.
+export const queryRol = async (id) => {
+    const consulta = await query(
+        coleccion_usuarios,
+        where("id", "==", id),
+    );
+
+    const productosOrdenados = await getDocs(consulta);
+    productosOrdenados.docs.map((documento) => {
+
+        if(documento.data().rol == "editor"){
+            plantillas.navProducto();
+            plantillas.navEditor();
+        }else{
+            plantillas.navProducto();
+            plantillas.navUsuario();
+        }
+
     });
 };
 

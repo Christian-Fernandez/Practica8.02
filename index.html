@@ -10,29 +10,34 @@
   </head>
   <body>
 
-  <nav> <input type="button" id="productos" value="Productos"/> <input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/></nav>
+  <nav id="navegador" class="ocultar"><input type="button" id="productos" value="Productos"/><input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/><input type="button" id="logOut" value="Log Out"/></nav>
 
   <div id="login">
-      <form>
+      <form method="post">
       <h2>Login</h2>
       <input id = "usuario" name = "usuario" type = "text" placeholder="Email Address">
       <input id = "clave" name = "clave" type = "password" placeholder="Password">
           <div class="mb-3 text-center" id="divError"><span class="text-danger" id="messageError"></span></div>
       <button id="boton_login">Iniciar Sesión</button>
+          <div><a href="#" id="ir_register">¡Crear una cuenta!</a></div>
       </form>
   </div>
 
-  <div id="register">
-      <form>
+  <div id="register" class="ocultar">
+      <form method="post">
           <h2>Registrarse</h2>
           <input id = "usuario_register" name = "usuario" type = "text" placeholder="Email Address">
           <input id = "clave_register" name = "clave" type = "password" placeholder="Password">
+          <select id="rol">
+              <option value="editor">Editor</option>
+              <option value="usuario">Usuario</option>
+          </select>
           <div class="mb-3 text-center" id="divError_register"><span class="text-danger" id="messageError_register"></span></div>
-          <button id="boton_register">Registrarse</button>
+          <input type="button" id="boton_register" value="Registrarse"/>
       </form>
   </div>
 
-  <div id="mostrar_productos">
+  <div id="mostrar_productos" class="ocultar">
       <form action="#">
 
           <input type="text" id="buscador">

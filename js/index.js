@@ -2,7 +2,7 @@
 
 import * as script from "./script_firebase.js";
 import * as plantillas from "./plantillasFirebase.js";
-import {editarObtenerProducto} from "./script_firebase.js";
+import  * as auth from "./firebase_auth.js";
 
 window.onload = ()=> {
 
@@ -15,9 +15,10 @@ window.onload = ()=> {
     var crear_carrito = document.getElementById("mostrar_crear_carrito");
     var añadir_producto = document.getElementById("añadirProducto");
 
-
+    auth.comprobarAuth();
     script.obtenerAñadirProductos();
     script.obtenerAñadirCarritos();
+
 
     //AddEventListener que al hacer clic sobre el identificador mostrar ejecutara la función obtenerProductos.
     document.getElementById("mostrar").addEventListener(
@@ -185,6 +186,34 @@ window.onload = ()=> {
         },
         false
     );
+
+    //AddEventListener que al hacer clic sobre el identificador boton_registe ejecutara la función createAccount.
+    document.getElementById("boton_register").addEventListener(
+        "click",
+        (e) => {
+            auth.createAccount(document.getElementById("usuario_register").value,document.getElementById("clave_register").value);
+        },
+        false
+    );
+
+    //AddEventListener que al hacer clic sobre el identificador ir_register ejecutara la función navRegister.
+    document.getElementById("ir_register").addEventListener(
+        "click",
+        (e) => {
+            plantillas.navRegister();
+        },
+        false
+    );
+    //AddEventListener que al hacer clic sobre el identificador ir_register ejecutara la función navRegister.
+    document.getElementById("logOut").addEventListener(
+        "click",
+        (e) => {
+            auth.log_out();
+        },
+        false
+    );
+
+
 
 
 }

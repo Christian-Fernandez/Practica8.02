@@ -42,6 +42,8 @@ export const navProducto = () => {
     document.getElementById("añadir_producto").classList.add("ocultar");
     document.getElementById("mostrar_productos").classList.remove("ocultar");
     document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
 };
 
 //Función que muestra solo el div con el identificador crear_carrito.
@@ -52,6 +54,8 @@ export const navCrearCarrito = () => {
     document.getElementById("crear_carrito").classList.remove("ocultar");
     document.getElementById("añadir_producto").classList.add("ocultar");
     document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
 };
 
 //Función que muestra solo el div con el identificador mostrar_carrito.
@@ -62,6 +66,8 @@ export const navVerCarrito = () => {
     document.getElementById("crear_carrito").classList.add("ocultar");
     document.getElementById("añadir_producto").classList.add("ocultar");
     document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
 };
 
 //Función que muestra solo el div con el identificador añadir_producto.
@@ -72,6 +78,8 @@ export const navAñadirProducto = () => {
     document.getElementById("crear_carrito").classList.add("ocultar");
     document.getElementById("añadir_producto").classList.remove("ocultar");
     document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
 };
 
 //Función que muestra solo el div con el identificador editar_producto.
@@ -82,7 +90,54 @@ export const navEditarProducto = () => {
     document.getElementById("crear_carrito").classList.add("ocultar");
     document.getElementById("añadir_producto").classList.add("ocultar");
     document.getElementById("editar_producto").classList.remove("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
 };
+
+//Función que muestra solo el div con el identificador register.
+export const navRegister = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("register").classList.remove("ocultar");
+    document.getElementById("login").classList.add("ocultar");
+    document.getElementById("navegador").classList.add("ocultar");
+};
+
+//Función que muestra solo el div con el identificador login.
+export const navLogin = () => {
+
+    document.getElementById("mostrar_carrito").classList.add("ocultar");
+    document.getElementById("mostrar_productos").classList.add("ocultar");
+    document.getElementById("crear_carrito").classList.add("ocultar");
+    document.getElementById("añadir_producto").classList.add("ocultar");
+    document.getElementById("editar_producto").classList.add("ocultar");
+    document.getElementById("register").classList.add("ocultar");
+    document.getElementById("login").classList.remove("ocultar");
+    document.getElementById("navegador").classList.add("ocultar");
+
+};
+
+//Función que muestra solo el div con el identificador register.
+export const navEditor = () => {
+
+    document.getElementById("navegador").classList.remove("ocultar");
+    document.getElementById("modificar_productos").classList.remove("ocultar");
+};
+
+//Función que muestra solo el div con el identificador register.
+export const navUsuario = () => {
+
+    document.getElementById("navegador").classList.remove("ocultar");
+    document.getElementById("modificar_productos").classList.add("ocultar");
+
+};
+
+
+
 
 
 
