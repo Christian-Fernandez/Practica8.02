@@ -108,6 +108,7 @@ export const obtenerCarritos = async () => {
     });
 };
 
+//Función que obtiene los carritos y los añade al select.
 export const obtenerAñadirCarritos = async () => {
     let productos = await getDocs(coleccion_carrito);
     document.getElementById("select_carrito").innerHTML ="";
@@ -117,7 +118,7 @@ export const obtenerAñadirCarritos = async () => {
     });
 };
 
-
+//Función que obtiene un carrito con el id que se le pasa por parametro y lo añade a una tabla.
 export const obtenerCarrito = async (id) => {
     let carrito = await doc(coleccion_carrito,id);
     const datos = await getDoc(carrito);
@@ -130,7 +131,7 @@ export const obtenerCarrito = async (id) => {
 
 };
 
-
+//Función que crea un nuevo carrito.
 export const crearCarrito = (nombre,propietario,array,fecha) => {
     let nuevoCarrito = {
         nombre: nombre,
@@ -142,10 +143,12 @@ export const crearCarrito = (nombre,propietario,array,fecha) => {
     return nuevoCarrito;
 };
 
-export const guardarCarrito = async (feo) => {
-    const guardado = await addDoc(coleccion_carrito, feo);
+//Función que guarda en la colección de carritos , el objeto que se le pasa por parametro.
+export const guardarCarrito = async (objeto) => {
+    const guardado = await addDoc(coleccion_carrito, objeto);
 };
 
+//Función que añade un producto a un carrito.
 export const actualizarProductosCarrito = async (id,dato) => {
     const pruebaRef = await doc(coleccion_carrito, id);
     await updateDoc(pruebaRef, {
@@ -173,7 +176,7 @@ export const ordenarCarritos = async (campo) => {
     });
 };
 
-
+//Función que muestra en los inputs la información de dicho producto.
 export const editarObtenerProducto = async (id) => {
     let productos = await doc(coleccion,id);
     const datos = await getDoc(productos);
@@ -186,6 +189,7 @@ export const editarObtenerProducto = async (id) => {
 
 };
 
+//Función que permite editar un producto con los parametros que se le pasa.
 export const editarProducto = async (id,imagen,nombre,descripcion,peso,precio) => {
     const pruebaRef = await doc(coleccion, id);
     await updateDoc(pruebaRef, {
