@@ -71,7 +71,7 @@ export const obtenerProducto = async (id,texto,i,tabla,lenght,peso,precio) => {
         }else{
             var transporte=`Pesa un total de ${peso} kilos yo de ti iria en coche no vaya ser que te partas la espalda.`;
         }
-        tabla.innerHTML += `<tr><th colspan="2">Peso Total:</th><th colspan="3">Precio Total:</th></tr><tr><td colspan="2">${transporte}</td><td colspan="3">${precio}</td></tr>`;
+        tabla.innerHTML += `<tr><th colspan="2">Peso Total:</th><th colspan="3">Precio Total:</th></tr><tr><td colspan="2">${transporte}</td><td colspan="3">${precio}€</td></tr>`;
     }
 
 };
@@ -127,11 +127,16 @@ export const obtenerCarritos = async (propietario) => {
 };
 
 //Función que obtiene los carritos y los añade al select.
-export const obtenerAñadirCarritos = async () => {
-    let productos = await getDocs(coleccion_carrito);
-    document.getElementById("select_carrito").innerHTML ="";
+export const obtenerAnadirCarritos = async (propietario) => {
 
-    productos.docs.map((documento) => {
+    const consulta = await query(
+        coleccion_carrito,
+        where("propietario", "==", propietario),
+    );
+    document.getElementById("select_carrito").innerHTML ="";
+    const carritos = await getDocs(consulta);
+
+    carritos.docs.map((documento) => {
         document.getElementById("select_carrito").innerHTML += plantillas.printear_añadirCarritos(documento);
     });
 };
@@ -150,7 +155,9 @@ export const obtenerCarrito = async (id) => {
 };
 
 //Función que crea un nuevo carrito.
-export const crearCarrito = (nombre,propietario,array,fecha) => {
+export const crearCarrito = async (nombre,propietario,array,fecha) => {
+
+
     let nuevoCarrito = {
         nombre: nombre,
         productos: array,
@@ -158,6 +165,7 @@ export const crearCarrito = (nombre,propietario,array,fecha) => {
         fecha: fecha,
         peso: 0,
         precio:0,
+
     };
 
     return nuevoCarrito;
@@ -196,27 +204,6 @@ export const actualizarProductosCarrito = async (id,dato) => {
     obtenerCarrito(document.getElementById("select_carrito").value);
 };
 
-//Función que hace una query a la base de datos para que devuelva los carritos ordenados.
-export const ordenarCarritos = async (propietario,campo) => {
-    const consulta = await query(
-        coleccion_carrito,
-        where("propietario", "==", propietario)
-
-    );
-
-
-    document.getElementById("datos").innerHTML ="";
-    const carritosOrdenados = await getDocs(consulta);
-    document.getElementById("datos_carrito").innerHTML ="";
-
-    carritosOrdenados.docs.map((documento) => {
-        let tables = document.createElement("table");
-        tables.innerHTML="";
-        tables.innerHTML += plantillas.printear_carrito(documento,tables);
-        document.getElementById("datos_carrito").appendChild(tables);
-
-    });
-};
 
 //Función que muestra en los inputs la información de dicho producto.
 export const editarObtenerProducto = async (id) => {
@@ -277,6 +264,7 @@ export const queryRol = async (id) => {
             plantillas.navProducto();
             plantillas.navUsuario();
         }
+        document.getElementById("ponerNombre").innerHTML=plantillas.printearNombre(documento);
 
     });
 };

@@ -24,7 +24,7 @@ export const persistAccount = () => {
   setPersistence(auth, browserLocalPersistence);
 };
 
-export const createAccount = async (email, pass) => {
+export const createAccount = async (email, pass,nombre) => {
   try {
     const create = await createUserWithEmailAndPassword(auth, email, pass);
     const correo = create.user.email;
@@ -38,7 +38,7 @@ export const createAccount = async (email, pass) => {
     var dia= dd + '/' + mm  + '/' + yyyy;
 
 
-    const objetoUsuario=script.crearUsuario(usuario,id,document.getElementById("rol").value,dia);
+    const objetoUsuario=script.crearUsuario(usuario,id,document.getElementById("rol").value,dia,nombre);
     script.guardarUsuario(objetoUsuario);
     hideLoginError();
     persistAccount();
@@ -107,6 +107,13 @@ export const showRegisterError = (error) => {
       break;
   }
 };
+
+export const showErrorNombre = () =>{
+  divError.style.display = "block";
+  const messageError = document.getElementById("messageError_register");
+  messageError.innerHTML = "Por favor introduzca un Nombre completo";
+
+}
 export const showLoginError = (error) => {
   divError.style.display = "block";
   const messageError = document.getElementById("messageError");
@@ -170,7 +177,12 @@ export const signAccount = async (email, pass) => {
 export const comprobarAuth = () => {
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
+
       script.queryRol(user.uid);
+      const correo = user.email;
+      let datos=correo.split("@");
+      script.obtenerAnadirCarritos(datos[0]);
+
     } else {
       plantillas.navLogin();
     }
@@ -184,6 +196,7 @@ export const comprobarAuthCarrito = (nombre,array,fecha) => {
       let datos=correo.split("@");
       const nuevoCarrito = script.crearCarrito(nombre,datos[0],array,fecha);
       script.guardarCarrito(nuevoCarrito);
+      script.obtenerAnadirCarritos(datos[0]);
     } else {
       plantillas.navLogin();
     }
@@ -198,19 +211,6 @@ export const comprobarAuthMostrarCarrito = () => {
       script.obtenerCarritos(datos[0]);
     } else {
       plantillas.navLogin();
-    }
-  });
-};
-
-export const comprobarAuthMostrarCarritoFiltrado = (filtrado) => {
-  onAuthStateChanged(auth, (user) => {
-    if (user != null) {
-      const correo = user.email;
-      let datos=correo.split("@");
-      script.ordenarCarritos(datos[0],filtrado);
-    } else {
-      plantillas.navLogin();
-
     }
   });
 };

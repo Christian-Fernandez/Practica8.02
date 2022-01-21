@@ -1,3 +1,5 @@
+
+
 form {
 
     width: 350px;
@@ -63,7 +65,7 @@ img{
 
 
 
-input[type="email"],input[type="password"],select {
+input[type="email"],input[type="password"],input[type="text"],input[type="number"],select {
     position: relative;
     font-size: 16px;
     height: auto;
@@ -73,15 +75,6 @@ input[type="email"],input[type="password"],select {
 
 }
 
-input[type="text"],input[type="number"]{
-
-    font-size: 16px;
-    height: auto;
-    width: 200px;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
 
 select{
 
@@ -167,7 +160,6 @@ body{
 
 nav {
     overflow: hidden;
-
 }
 
 nav input[type="button"],button{
@@ -180,8 +172,14 @@ nav input[type="button"],button{
     cursor: pointer;
     font-size: 18px;
     margin-top: 20px;
-    margin-left: 2px;
-
+    margin-left: 10px;
 }
+
+nav h2{
+    float: right;
+    padding: 12px 20px;
+    margin: 15px 0.5em 0 0;
+}
+
 
 

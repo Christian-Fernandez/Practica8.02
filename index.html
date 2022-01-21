@@ -10,13 +10,13 @@
   </head>
   <body>
 
-  <nav id="navegador" class="ocultar"><input type="button" id="productos" value="Productos"/><input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/><input type="button" id="logOut" value="Log Out"/></nav>
+  <nav id="navegador" class="ocultar"><input type="button" id="productos" value="Productos"/><input type="button" id="mostrar_crear_carrito" value="Crear Carrito"/><input type="button" id="carrito" value="Carritos"/> <input type="button" id="añadirProducto" value="Añadir Productos"/> <input type="button" id="modificar_productos" value="Editar Productos"/><input type="button" id="logOut" value="Log Out"/> <h2 id="ponerNombre"></h2></nav>
 
   <div id="login">
       <form method="post">
       <h2>Login</h2>
-      <input id = "usuario" name = "usuario" type = "text" placeholder="Email Address">
-      <input id = "clave" name = "clave" type = "password" placeholder="Password">
+      <input id = "usuario" name = "usuario" type = "text" placeholder="Correo Electronico">
+      <input id = "clave" name = "clave" type = "password" placeholder="Contraseña">
           <div class="mb-3 text-center" id="divError"><span class="text-danger" id="messageError"></span></div>
           <input type="button" id="boton_login" value="Iniciar Sesión"/>
           <div><a href="#" id="ir_register">¡Crear una cuenta!</a></div>
@@ -26,14 +26,19 @@
   <div id="register" class="ocultar">
       <form method="post">
           <h2>Registrarse</h2>
-          <input id = "usuario_register" name = "usuario" type = "text" placeholder="Email Address">
-          <input id = "clave_register" name = "clave" type = "password" placeholder="Password">
+
+          <input id="nombre_completo" type="text" placeholder="Nombre Completo"/>
+
+          <input id = "usuario_register" name = "usuario" type = "email" placeholder="Correo Electronico">
+
+          <input id = "clave_register" name = "clave" type = "password" placeholder="Contraseña">
           <select id="rol">
               <option value="editor">Editor</option>
               <option value="usuario">Usuario</option>
           </select>
           <div class="mb-3 text-center" id="divError_register"><span class="text-danger" id="messageError_register"></span></div>
           <input type="button" id="boton_register" value="Registrarse"/>
+          <div><a href="#" id="ir_login">¡Iniciar Sesión!</a></div>
       </form>
   </div>
 
@@ -65,13 +70,6 @@
 
   <div id="mostrar_carrito" class="ocultar">
       <form action="#">
-
-          <input type="button" id="ordenar_carrito" value="Ordenar" />
-
-          <select id="selección_carrito">
-              <option value="propietario">Propietario</option>
-              <option value="fecha">Fecha</option>
-          </select>
 
           <input type="button" id="mostrarCarrito" value="Mostrar"/>
 

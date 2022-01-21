@@ -144,6 +144,12 @@ export const navUsuario = () => {
 
 };
 
+export const printearNombre = (nombre) => {
+
+    return `¡Bienvenido de vuelta ${nombre.data().nombreCompleto}!`;
+
+};
+
 
 
 
