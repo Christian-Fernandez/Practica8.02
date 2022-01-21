@@ -67,9 +67,9 @@ export const obtenerProducto = async (id,texto,i,tabla,lenght,peso,precio) => {
 
     if(i==lenght-1){
         if(peso<7){
-            var transporte=`Pesa un total de ${peso} kilos yo de ti iria andando así haces ejercicio.`;
+            var transporte=`Pesa un total de ${peso.toFixed(2)} kilos yo de ti iria andando así haces ejercicio.`;
         }else{
-            var transporte=`Pesa un total de ${peso} kilos yo de ti iria en coche no vaya ser que te partas la espalda.`;
+            var transporte=`Pesa un total de ${peso.toFixed(2)} kilos yo de ti iria en coche no vaya ser que te partas la espalda.`;
         }
         tabla.innerHTML += `<tr><th colspan="2">Peso Total:</th><th colspan="3">Precio Total:</th></tr><tr><td colspan="2">${transporte}</td><td colspan="3">${precio}€</td></tr>`;
     }
@@ -155,7 +155,7 @@ export const obtenerCarrito = async (id) => {
 };
 
 //Función que crea un nuevo carrito.
-export const crearCarrito = async (nombre,propietario,array,fecha) => {
+export const crearCarrito = (nombre,propietario,user,array,fecha) => {
 
 
     let nuevoCarrito = {
@@ -165,7 +165,7 @@ export const crearCarrito = async (nombre,propietario,array,fecha) => {
         fecha: fecha,
         peso: 0,
         precio:0,
-
+        nombreUser:user,
     };
 
     return nuevoCarrito;
@@ -231,12 +231,13 @@ export const editarProducto = async (id,imagen,nombre,descripcion,peso,precio) =
 };
 
 //Función que crea un nuevo usuario.
-export const crearUsuario = (nombre,id,rol,fecha) => {
+export const crearUsuario = (nombre,id,rol,fecha,nombreCompleto) => {
     let nuevoUsuario = {
         nombre: nombre,
         fecha: fecha,
         id: id,
         rol: rol,
+        nombreCompleto:nombreCompleto,
     };
 
     return nuevoUsuario;

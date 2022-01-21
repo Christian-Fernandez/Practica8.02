@@ -14,7 +14,7 @@ export const printear_carrito = (documento,tabla) => {
 
     if(Array.isArray(documento.data().productos)) {
 
-        var texto = `<tr><th>${documento.data().nombre}</th><th colspan="2">${documento.data().propietario}</th><th colspan="2">${documento.data().fecha}</th></tr> <tr><th>Imagen</th><th>Nombre</th><th>Descripción</th><th>peso</th><th>precio</th></tr>`;
+        var texto = `<tr><th>${documento.data().nombre}</th><th colspan="2">${documento.data().nombreUser}</th><th colspan="2">${documento.data().fecha}</th></tr> <tr><th>Imagen</th><th>Nombre</th><th>Descripción</th><th>peso</th><th>precio</th></tr>`;
         for (let i=0; i < documento.data().productos.length; i++) {
             script.obtenerProducto(documento.data().productos[i], texto, i, tabla, documento.data().productos.length, documento.data().peso, documento.data().precio);
         }
@@ -39,7 +39,7 @@ export const printear_añadirCarritos = (documento) => {
 //Función que printea los tr de la tabla.
 export const printear_tabla = (documento) => {
 
-  return `<tr><td><img src="${documento.data().imagen}"></td><td>${documento.data().nombre}</td><td>${documento.data().descripcion}</td><td>${documento.data().peso}</td><td>${documento.data().precio}</td></tr>`;
+  return `<tr><td><img src="${documento.data().imagen}"></td><td>${documento.data().nombre}</td><td>${documento.data().descripcion}</td><td>${documento.data().peso}Kilos</td><td>${documento.data().precio}€</td></tr>`;
 };
 
 //Función que muestra solo el div con el identificador mostrar_productos.
@@ -144,6 +144,7 @@ export const navUsuario = () => {
 
 };
 
+//Función para printear nuestro nombre completo.
 export const printearNombre = (nombre) => {
 
     return `¡Bienvenido de vuelta ${nombre.data().nombreCompleto}!`;

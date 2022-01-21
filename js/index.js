@@ -3,7 +3,7 @@
 import * as script from "./script_firebase.js";
 import * as plantillas from "./plantillasFirebase.js";
 import  * as auth from "./firebase_auth.js";
-import {comprobarAuthMostrarCarrito, showErrorNombre, showRegisterError} from "./firebase_auth.js";
+import {comprobarAuthMostrarCarrito} from "./firebase_auth.js";
 
 window.onload = ()=> {
 
@@ -18,6 +18,7 @@ window.onload = ()=> {
 
     auth.comprobarAuth();
     script.obtenerAñadirProductos();
+
 
     //AddEventListener que al hacer clic sobre el identificador mostrar ejecutara la función obtenerProductos.
     document.getElementById("mostrar").addEventListener(
@@ -125,7 +126,7 @@ window.onload = ()=> {
 
             auth.comprobarAuthCarrito(document.getElementById("nombre").value,{},dia);
             script.obtenerAñadirProductos();
-            script.obtenerAnadirCarritos();
+            auth.comprobarAuth();
         },
         false
     );
@@ -159,7 +160,6 @@ window.onload = ()=> {
     );
 
 
-
     //AddEventListener que al hacer un cambio sobre el identificador select_producto2 ejecutara la función editarObtenerProducto.
     document.getElementById("select_producto2").addEventListener(
         "change",
@@ -182,11 +182,7 @@ window.onload = ()=> {
     document.getElementById("boton_register").addEventListener(
         "click",
         (e) => {
-            if(document.getElementById("nombre_completo").value.trim()=="" || document.getElementById("nombre_completo").value.length<9){
-                auth.showErrorNombre();
-            }else{
-                auth.createAccount(document.getElementById("usuario_register").value,document.getElementById("clave_register").value,document.getElementById("nombre_completo").value);
-            }
+            auth.createAccount(document.getElementById("usuario_register").value,document.getElementById("clave_register").value,document.getElementById("nombre_completo").value);
         },
         false
     );
@@ -196,15 +192,6 @@ window.onload = ()=> {
         "click",
         (e) => {
             plantillas.navRegister();
-        },
-        false
-    );
-
-    //AddEventListener que al hacer clic sobre el identificador ir_register ejecutara la función navRegister.
-    document.getElementById("ir_login").addEventListener(
-        "click",
-        (e) => {
-            plantillas.navLogin();
         },
         false
     );

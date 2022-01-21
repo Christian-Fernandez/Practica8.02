@@ -16,14 +16,24 @@ import {
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-auth.js";
 
-const auth = getAuth(app);
-const divError = document.getElementById("divError");
+import {
+  getDocs,
+    getFirestore,
+    collection,
+  query,
+  where,
+} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
 
+const auth = getAuth(app);
+const db = getFirestore(app);
+const divError = document.getElementById("divError");
+const coleccion_usuarios = collection(db,"Usuarios");
 
 export const persistAccount = () => {
   setPersistence(auth, browserLocalPersistence);
 };
 
+//Función que crea la cuenta con los parametros pasados.
 export const createAccount = async (email, pass,nombre) => {
   try {
     const create = await createUserWithEmailAndPassword(auth, email, pass);
@@ -55,12 +65,16 @@ export const createAccount = async (email, pass,nombre) => {
 };
 
 
-
+//Función que oculta los errores del login.
 export const hideLoginError = () => {
+  const messageError = document.getElementById("messageError_register");
+  const messageError_login = document.getElementById("messageError");
   divError.style.display = "none";
   messageError.innerHTML = "";
+  messageError_login.innerHTML = "";
 };
 
+//Función que muestra los errores del register.
 export const showRegisterError = (error) => {
   divError.style.display = "block";
   const messageError = document.getElementById("messageError_register");
@@ -108,12 +122,15 @@ export const showRegisterError = (error) => {
   }
 };
 
+//Función que muestra error si el nombre tiene menos caracteres.
 export const showErrorNombre = () =>{
   divError.style.display = "block";
   const messageError = document.getElementById("messageError_register");
   messageError.innerHTML = "Por favor introduzca un Nombre completo";
 
 }
+
+//Función para controlar error del login.
 export const showLoginError = (error) => {
   divError.style.display = "block";
   const messageError = document.getElementById("messageError");
@@ -161,7 +178,7 @@ export const showLoginError = (error) => {
   }
 };
 
-
+//Función para iniciar sesión.
 export const signAccount = async (email, pass) => {
   try {
     await signInWithEmailAndPassword(auth, email, pass);
@@ -174,6 +191,7 @@ export const signAccount = async (email, pass) => {
   }
 };
 
+//Función que comprueba que nuestra autentificación que correcta.
 export const comprobarAuth = () => {
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
@@ -189,20 +207,33 @@ export const comprobarAuth = () => {
   });
 };
 
-export const comprobarAuthCarrito = (nombre,array,fecha) => {
-  onAuthStateChanged(auth, (user) => {
+//Función que crea un nuevo carrito con nuestra autentificación.
+export const comprobarAuthCarrito = async (nombre,array,fecha) => {
+  onAuthStateChanged(auth,  async (user) => {
     if (user != null) {
       const correo = user.email;
       let datos=correo.split("@");
-      const nuevoCarrito = script.crearCarrito(nombre,datos[0],array,fecha);
-      script.guardarCarrito(nuevoCarrito);
-      script.obtenerAnadirCarritos(datos[0]);
+
+      const consulta = query(
+          coleccion_usuarios,
+          where("id", "==", user.uid),
+      );
+
+      const usuario = await getDocs(consulta);
+
+      usuario.docs.map((document)=>{
+        const nuevoCarrito = script.crearCarrito(nombre,datos[0],document.data().nombreCompleto,array,fecha);
+        script.guardarCarrito(nuevoCarrito);
+        script.obtenerAnadirCarritos(datos[0]);
+      })
+
     } else {
       plantillas.navLogin();
     }
   });
 };
 
+//Función que muestra nuestros carritos.
 export const comprobarAuthMostrarCarrito = () => {
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
@@ -215,7 +246,7 @@ export const comprobarAuthMostrarCarrito = () => {
   });
 };
 
-
+//Función que te desloguea.
 export const log_out = async () => {
   try {
     await signOut(auth);
