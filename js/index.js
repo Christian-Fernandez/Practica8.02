@@ -195,6 +195,15 @@ window.onload = ()=> {
         },
         false
     );
+
+    //AddEventListener que al hacer clic sobre el identificador ir_login ejecutara la función navRegister.
+    document.getElementById("ir_login").addEventListener(
+        "click",
+        (e) => {
+            plantillas.navLogin();
+        },
+        false
+    );
     //AddEventListener que al hacer clic sobre el identificador ir_register ejecutara la función navRegister.
     document.getElementById("logOut").addEventListener(
         "click",
